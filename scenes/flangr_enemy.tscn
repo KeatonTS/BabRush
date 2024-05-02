@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://byiyqel8xygd7"]
+
+[ext_resource type="Script" path="res://scenes/flangr_enemy.gd" id="1_agaoq"]
+[ext_resource type="Texture2D" uid="uid://d36fypkeue1h1" path="res://graphics/enemy/flangr/flangr_fly_1.png" id="1_mjlbc"]
+[ext_resource type="Texture2D" uid="uid://bnommtb5x7vnd" path="res://graphics/enemy/flangr/flangr_fly_2.png" id="2_40hdm"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rgrm2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_mjlbc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_40hdm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j6mjp"]
+size = Vector2(34, 23)
+
+[node name="Flangr" type="CharacterBody2D" groups=["Enemy", "Entity"]]
+texture_filter = 1
+collision_layer = 8
+collision_mask = 8
+script = ExtResource("1_agaoq")
+
+[node name="FlangrIMG" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_rgrm2")
+autoplay = "default"
+frame_progress = 0.306652
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5.5)
+shape = SubResource("RectangleShape2D_j6mjp")
+one_way_collision = true
+one_way_collision_margin = 0.0

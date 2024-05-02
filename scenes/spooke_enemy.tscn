@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://cvjae8hk872ws"]
+
+[ext_resource type="Script" path="res://scenes/spooke_enemy.gd" id="1_o84q6"]
+[ext_resource type="Texture2D" uid="uid://csyq8tgcux4c7" path="res://graphics/enemy/spooke/spook_fly_1.png" id="1_p3v5s"]
+[ext_resource type="Texture2D" uid="uid://bqj30cagrysr8" path="res://graphics/enemy/spooke/spook_fly_2.png" id="2_33pop"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yh54u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_p3v5s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_33pop")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jtqfk"]
+size = Vector2(30, 26)
+
+[node name="Spooke" type="CharacterBody2D" groups=["Enemy", "Entity"]]
+texture_filter = 1
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_o84q6")
+
+[node name="SpookeIMG" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_yh54u")
+autoplay = "default"
+frame_progress = 0.880227
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_jtqfk")
+one_way_collision = true
+one_way_collision_margin = 0.0

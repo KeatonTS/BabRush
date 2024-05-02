@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://ficjcuaar566"]
+
+[ext_resource type="Script" path="res://scenes/polygon_enemy.gd" id="1_baimi"]
+[ext_resource type="Texture2D" uid="uid://cenuw1d8aci36" path="res://graphics/enemy/polygon/polygon_run1.png" id="1_klqy4"]
+[ext_resource type="Texture2D" uid="uid://bcc1ec2icsjl3" path="res://graphics/enemy/polygon/polygon_run2.png" id="2_l7gff"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_no26n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_klqy4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_l7gff")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ahx4g"]
+size = Vector2(21, 33)
+
+[node name="Polygon" type="CharacterBody2D" groups=["Enemy", "Entity"]]
+texture_filter = 1
+collision_layer = 16
+collision_mask = 16
+script = ExtResource("1_baimi")
+
+[node name="PolygonIMG" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_no26n")
+autoplay = "default"
+frame_progress = 0.322707
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.5, 18.5)
+shape = SubResource("RectangleShape2D_ahx4g")
+one_way_collision = true

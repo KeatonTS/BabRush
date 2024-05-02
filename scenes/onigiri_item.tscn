@@ -1,0 +1,78 @@
+[gd_scene load_steps=13 format=3 uid="uid://cjljr25uuhwll"]
+
+[ext_resource type="Script" path="res://scenes/onigiri_item.gd" id="1_cx4r1"]
+[ext_resource type="Texture2D" uid="uid://bs5dcqdbgewrv" path="res://graphics/item/onigiri/onigiri_1.png" id="1_jfimh"]
+[ext_resource type="Texture2D" uid="uid://cafnr4uhyr7ov" path="res://graphics/item/onigiri/onigiri_2.png" id="2_38jfe"]
+[ext_resource type="Texture2D" uid="uid://yiq4w1s85hmd" path="res://graphics/item/onigiri/onigiri_collected1.png" id="2_rd6df"]
+[ext_resource type="Texture2D" uid="uid://v5vs17x7x2er" path="res://graphics/item/onigiri/onigiri_collected2.png" id="3_6oqnh"]
+[ext_resource type="Texture2D" uid="uid://vfs7js76afs5" path="res://graphics/item/onigiri/onigiri_collected3.png" id="4_bwo63"]
+[ext_resource type="Texture2D" uid="uid://b0s0ktdfh1imj" path="res://graphics/item/onigiri/onigiri_collected4.png" id="5_vxqh3"]
+[ext_resource type="Texture2D" uid="uid://bmpckjsg1nty8" path="res://graphics/item/onigiri/onigiri_collected5.png" id="6_avm7l"]
+[ext_resource type="Texture2D" uid="uid://bjfk2cp5f6lim" path="res://graphics/item/onigiri/onigiri_collected6.png" id="7_wovgo"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3hkcm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_rd6df")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_6oqnh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_bwo63")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_vxqh3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_avm7l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_wovgo")
+}],
+"loop": false,
+"name": &"collected",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.7,
+"texture": ExtResource("1_jfimh")
+}, {
+"duration": 1.7,
+"texture": ExtResource("2_38jfe")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_by4qx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yu2ij"]
+radius = 21.0238
+
+[node name="StaticBody2D" type="StaticBody2D" groups=["Entity", "Item"]]
+script = ExtResource("1_cx4r1")
+
+[node name="Motion" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_3hkcm")
+animation = &"collected"
+autoplay = "default"
+frame = 5
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3, 0)
+shape = SubResource("RectangleShape2D_by4qx")
+disabled = true
+one_way_collision_margin = 0.0
+
+[node name="ItemArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ItemArea"]
+position = Vector2(-4, -1)
+shape = SubResource("CircleShape2D_yu2ij")
+
+[connection signal="area_entered" from="ItemArea" to="." method="_on_item_area_entered"]
